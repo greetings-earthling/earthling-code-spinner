@@ -66,6 +66,24 @@
       transition: transform 3s cubic-bezier(0.19, 1, 0.22, 1);
     }
 
+        .ecs-labels {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+
+    .ecs-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: 50% 50%;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #111827;
+      text-transform: lowercase;
+    }
+    
     .ecs-pointer {
       position: absolute;
       top: -20px;
@@ -165,10 +183,23 @@
     </div>
 
     <div class="ecs-wheel-container">
-      <div class="ecs-wheel" id="ecs-wheel"></div>
-      <div class="ecs-pointer">▼</div>
-      <div class="ecs-centre">Spin<br>for today</div>
+  <div class="ecs-wheel" id="ecs-wheel">
+    <div class="ecs-labels">
+      <div class="ecs-label" style="transform: rotate(18deg) translate(0, -105px) rotate(-18deg);">are</div>
+      <div class="ecs-label" style="transform: rotate(54deg) translate(0, -105px) rotate(-54deg);">wonder</div>
+      <div class="ecs-label" style="transform: rotate(90deg) translate(0, -105px) rotate(-90deg);">care</div>
+      <div class="ecs-label" style="transform: rotate(126deg) translate(0, -105px) rotate(-126deg);">dare</div>
+      <div class="ecs-label" style="transform: rotate(162deg) translate(0, -105px) rotate(-162deg);">create</div>
+      <div class="ecs-label" style="transform: rotate(198deg) translate(0, -105px) rotate(-198deg);">grow</div>
+      <div class="ecs-label" style="transform: rotate(234deg) translate(0, -105px) rotate(-234deg);">belong</div>
+      <div class="ecs-label" style="transform: rotate(270deg) translate(0, -105px) rotate(-270deg);">tend</div>
+      <div class="ecs-label" style="transform: rotate(306deg) translate(0, -105px) rotate(-306deg);">laugh</div>
+      <div class="ecs-label" style="transform: rotate(342deg) translate(0, -105px) rotate(-342deg);">marvel</div>
     </div>
+  </div>
+  <div class="ecs-pointer">▼</div>
+  <div class="ecs-centre">Earthlings…</div>
+</div>
 
     <button id="ecs-spin-button">Spin the wheel</button>
 
@@ -185,65 +216,65 @@
   <script>
 (function () {
   // 10 Earth Codes
-  const codes = [
+    const codes = [
     {
-      name: "Earth Code 1: Earthlings are",
+      name: "Earthlings are",
       mantra: "Breathe in. Be present. Let go.",
-      text: "Today, practise simply existing where you are, without rushing to the next thing.",
+      text: "Today, give yourself permission to slow down and simply exist where you are.",
       url: "#"
     },
     {
-      name: "Earth Code 2: Earthlings wonder",
+      name: "Earthlings wonder",
       mantra: "Stay curious. Get lost. Learn forever.",
-      text: "Look at something ordinary and notice one new detail you have never seen before.",
+      text: "Notice something ordinary and study it like a mystery. Let curiosity lead you.",
       url: "#"
     },
     {
-      name: "Earth Code 3: Earthlings try",
-      mantra: "Start small. Stay steady. Keep going.",
-      text: "Choose one tiny action and do it, even if your motivation feels low.",
+      name: "Earthlings care",
+      mantra: "Be gentle. Stay brave. Lead with love.",
+      text: "Choose one small way to be kinder today, to yourself or to someone else.",
       url: "#"
     },
     {
-      name: "Earth Code 4: Earthlings feel",
-      mantra: "Notice. Name. Allow.",
-      text: "Give your feelings a name instead of fighting them. Let them move through.",
+      name: "Earthlings dare",
+      mantra: "Be bold. Be true. Be whole.",
+      text: "Take one small risk that feels honest. Say the thing. Try the thing.",
       url: "#"
     },
     {
-      name: "Earth Code 5: Earthlings connect",
-      mantra: "Reach out. Listen. Respond.",
-      text: "Send a quick message or kind word to someone who might need it.",
+      name: "Earthlings create",
+      mantra: "Make beauty. Share truth. Leave traces.",
+      text: "Make something tiny. A sentence, a sketch, a note. Let it exist in the world.",
       url: "#"
     },
     {
-      name: "Earth Code 6: Earthlings rest",
-      mantra: "Slow down. Soften. Reset.",
-      text: "Protect one small pocket of rest today, even if it is just a few quiet minutes.",
+      name: "Earthlings grow",
+      mantra: "Let go. Adapt. Begin again.",
+      text: "Release one old thought that is holding you back and step into a new one.",
       url: "#"
     },
     {
-      name: "Earth Code 7: Earthlings create",
-      mantra: "Make. Play. Express.",
-      text: "Make something small. A note, a doodle, a sentence. Let it exist.",
+      name: "Earthlings belong",
+      mantra: "Welcome others. Make space. Stay open.",
+      text: "Invite someone in, even in a small way. A message, a smile, a seat at the table.",
       url: "#"
     },
     {
-      name: "Earth Code 8: Earthlings share",
-      mantra: "Give freely. Expect little.",
-      text: "Share something that helped you with someone else who might need it.",
+      name: "Earthlings tend",
+      mantra: "Share. Be the person you once needed. Care.",
+      text: "Offer care where you can. Water a friendship, a habit, or a part of yourself.",
       url: "#"
     },
     {
-      name: "Earth Code 9: Earthlings learn",
-      mantra: "Stay open. Stay teachable.",
-      text: "Treat one mistake as a teacher instead of a verdict.",
+      name: "Earthlings laugh",
+      mantra: "Laugh. Spread joy. Do not take things so seriously.",
+      text: "Let yourself laugh at something silly today. Joy is a serious kind of medicine.",
       url: "#"
     },
     {
-      name: "Earth Code 10: Earthlings return",
-      mantra: "Come back. Again and again.",
-      text: "Return to a habit or practice you fell away from, gently, without guilt.",
+      name: "Earthlings marvel",
+      mantra: "Let wonder guide you. Be grateful. Move forward without needing all the answers.",
+      text: "Look up, or out, or within, and let yourself be amazed by one small thing.",
       url: "#"
     }
   ];
