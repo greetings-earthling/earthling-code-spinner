@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Earthling Code Oracle</title>
+  <title>The Oracle | Earthling Code</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- IBM Plex Sans -->
@@ -31,7 +31,7 @@
     }
 
     h1 {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 600;
       margin: 0 0 0.5rem;
     }
@@ -43,35 +43,63 @@
       line-height: 1.6;
     }
 
-    /* Slot window */
+    /* Oracle window */
 
     .slot-wrapper {
       display: flex;
       justify-content: center;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
     }
 
     .slot-window {
       background: #f9fafb;
-      border-radius: 14px;
+      border-radius: 16px;
       border: 2px solid #030712;
-      padding: 0.65rem 1rem;
+      padding: 0.9rem 1.1rem;
       min-width: 240px;
-      min-height: 58px;
+      min-height: 130px;
       display: flex;
       align-items: center;
       justify-content: center;
       box-sizing: border-box;
       overflow: hidden;
       box-shadow: 0 10px 25px rgba(15,23,42,0.12);
+      text-align: left;
     }
 
-    .slot-text {
-      font-size: 1.05rem;
+    .slot-content {
+      width: 100%;
+    }
+
+    .slot-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6b7280;
+      margin-bottom: 0.15rem;
+    }
+
+    .slot-name {
+      font-size: 1.25rem;
       font-weight: 600;
       color: #030712;
+      margin-bottom: 0.15rem;
       white-space: nowrap;
-      transition: transform 0.1s;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .slot-mantra {
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 0.4rem;
+    }
+
+    .slot-text-detail {
+      font-size: 0.9rem;
+      color: #374151;
+      line-height: 1.5;
     }
 
     .slot-status {
@@ -84,66 +112,30 @@
     /* Button */
 
     button {
-      margin-top: 0.7rem;
-      padding: 0.6rem 1.9rem;
+      margin-top: 0.9rem;
+      padding: 0.65rem 2rem;
       font-size: 1rem;
       font-weight: 500;
       border-radius: 999px;
-      border: 1px solid #030712;
-      background: #030712;
+      border: 1px solid #885DA7;
+      background: #885DA7;
       color: #ffffff;
       cursor: pointer;
       transition: 0.15s;
     }
 
     button:hover:not(:disabled) {
-      background: #111827;
+      background: #6d4786;
+      border-color: #6d4786;
       transform: translateY(-1px);
     }
 
     button:disabled {
-      opacity: 0.6;
+      opacity: 0.65;
       cursor: default;
+      background: #9ca3af;
+      border-color: #9ca3af;
       transform: none;
-    }
-
-    /* Result text */
-
-   .ecs-result {
-  margin-top: 1.8rem;
-  text-align: left;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #222;
-  border-top: 1px solid #e5e7eb;
-  padding-top: 1.2rem;
-}
-
-.ecs-result-label {
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #6b7280;
-  margin-bottom: 0.2rem;
-}
-
-.ecs-result-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #030712;
-  margin-bottom: 0.15rem;
-}
-
-.ecs-result-mantra {
-  font-style: italic;
-  margin: 0.25rem 0 0.6rem;
-  color: #555;
-}
-
-    .ecs-footer {
-      margin-top: 1.7rem;
-      font-size: 0.8rem;
-      color: #6b7280;
     }
 
     @media (max-width: 480px) {
@@ -155,15 +147,15 @@
         min-width: 220px;
       }
 
-      .slot-text {
-        font-size: 1rem;
+      .slot-name {
+        font-size: 1.15rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="ecs-root">
-    <h1>Earthling Code Oracle</h1>
+    <h1>The Oracle</h1>
     <div class="ecs-subtext">
       Let the universe guide you.  
       Today, focus on this part of the Earthling Code.
@@ -171,21 +163,17 @@
 
     <div class="slot-wrapper">
       <div class="slot-window">
-        <div class="slot-text" id="slot-text">Earthlings…</div>
+        <div class="slot-content">
+          <div class="slot-label" id="slot-label">Today’s focus</div>
+          <div class="slot-name" id="slot-name">Earthlings…</div>
+          <div class="slot-mantra" id="slot-mantra"></div>
+          <div class="slot-text-detail" id="slot-text-detail"></div>
+        </div>
       </div>
     </div>
     <div class="slot-status" id="slot-status">Awaiting transmission.</div>
 
     <button id="spin-btn">Let fate decide</button>
-
-    <div class="ecs-result" id="ecs-result">
-      <div class="ecs-result-title">No code selected yet.</div>
-      <div>Tap the button above and let today’s focus choose you instead of the other way around.</div>
-    </div>
-
-    <div class="ecs-footer">
-      A small side project by Greetings, Earthling.
-    </div>
   </div>
 
   <script>
@@ -194,37 +182,37 @@
         {
           name: "Earthlings are",
           mantra: "Breathe in. Be present. Let go.",
-          text: "Settle into your body for a moment. Notice your breath. Let today begin from there."
+          text: "Today, return to yourself. Slow the pace, breathe deeper, and anchor into the moment you’re actually in."
         },
         {
           name: "Earthlings wonder",
           mantra: "Stay curious. Get lost. Learn forever.",
-          text: "Let one question lead you. Follow a thread of curiosity without needing it to be useful."
+          text: "Today, look closer. Ask questions. Don't take things for granted."
         },
         {
           name: "Earthlings care",
           mantra: "Be gentle. Stay brave. Lead with love.",
-          text: "Choose one small act of care, for yourself or for someone else, and follow through."
+          text: "Today, soften. Offer a small act of care to someone, or to yourself, without needing anything in return."
         },
         {
           name: "Earthlings dare",
           mantra: "Be bold. Be true. Be whole.",
-          text: "Take one tiny brave step. Say the honest thing, try the idea, send the message."
+          text: "Today, be brave in one tiny way. Say the truth, try the idea, or take the step you’ve been avoiding."
         },
         {
           name: "Earthlings create",
           mantra: "Make beauty. Share truth. Leave traces.",
-          text: "Make something small and real. A note, a sketch, a line of music. Let it exist."
+          text: "Today, make something. Anything. A sentence, a sketch, a note, a sound. Creation begins small."
         },
         {
           name: "Earthlings grow",
           mantra: "Let go. Adapt. Begin again.",
-          text: "Release one story about who you have to be, and allow a kinder version of you to start."
+          text: "Today, release something you’ve outgrown. Let go gently, and step into the version of you trying to emerge."
         },
         {
           name: "Earthlings belong",
           mantra: "Welcome others. Make space. Stay open.",
-          text: "Offer someone a feeling of belonging, even in a tiny way. A hello, an invite, a seat."
+          text: "Today, offer belonging. Invite someone in. Make space. Let someone feel less alone because of you."
         },
         {
           name: "Earthlings tend",
@@ -239,68 +227,73 @@
         {
           name: "Earthlings marvel",
           mantra: "Let wonder guide you. Be grateful. Move forward without needing all the answers.",
-          text: "Pause somewhere quiet. Look up, or out, or within, and let wonder wash over you."
+          text: "Today, pause long enough to feel wonder. Let gratitude rise naturally, without forcing answers."
         }
       ];
 
-      const slotText = document.getElementById("slot-text");
+      const slotName = document.getElementById("slot-name");
+      const slotMantra = document.getElementById("slot-mantra");
+      const slotDetail = document.getElementById("slot-text-detail");
       const status = document.getElementById("slot-status");
-      const result = document.getElementById("ecs-result");
       const button = document.getElementById("spin-btn");
 
-     let spinning = false;
-let hasSpun = false;
+      let spinning = false;
+      let hasSpun = false;
 
       button.addEventListener("click", function () {
-  if (hasSpun) {
-    status.textContent = "One spin per visit. Come back tomorrow.";
-    return;
-  }
-  if (spinning) return;
-  spinning = true;
-  button.disabled = true;
-  status.textContent = "Consulting the cosmos…";
+        if (hasSpun) {
+          status.textContent = "The universe has spoken. Come back tomorrow.";
+          return;
+        }
+        if (spinning) return;
 
-  const minSteps = 20;
-  const maxSteps = 30;
-  const totalSteps = minSteps + Math.floor(Math.random() * (maxSteps - minSteps + 1));
-  let delay = 35;
-  const delayIncrease = 6;
-  let step = 0;
-  let index = Math.floor(Math.random() * codes.length);
+        spinning = true;
+        button.disabled = true;
+        status.textContent = "Consulting the cosmos…";
 
-  function tick() {
-    index = (index + 1) % codes.length;
-    const current = codes[index];
-    slotText.textContent = current.name;
+        // clear mantra and detail while spinning
+        slotMantra.textContent = "";
+        slotDetail.textContent = "";
 
-    slotText.style.transform = step % 2 === 0 ? "translateY(1px)" : "translateY(-1px)";
-    step++;
+        const minSteps = 20;
+        const maxSteps = 30;
+        const totalSteps = minSteps + Math.floor(Math.random() * (maxSteps - minSteps + 1));
+        let delay = 35;
+        const delayIncrease = 6;
+        let step = 0;
+        let index = Math.floor(Math.random() * codes.length);
 
-    if (step < totalSteps) {
-      delay += delayIncrease;
-      setTimeout(tick, delay);
-    } else {
-      slotText.style.transform = "translateY(0)";
-      status.textContent = "Transmission received. That is your focus for today.";
-      showResult(current);
-      spinning = false;
-      hasSpun = true;
-      button.disabled = true;
-      button.textContent = "Come back tomorrow";
-    }
-  }
+        function tick() {
+          index = (index + 1) % codes.length;
+          const current = codes[index];
+          slotName.textContent = current.name;
 
-  tick();
-});
+          // subtle jitter
+          slotName.style.transform = step % 2 === 0 ? "translateY(1px)" : "translateY(-1px)";
+          step++;
 
-   function showResult(chosen) {
-  result.innerHTML =
-    '<div class="ecs-result-label">Today’s focus</div>' +
-    '<div class="ecs-result-title">' + chosen.name + '</div>' +
-    '<div class="ecs-result-mantra">' + chosen.mantra + '</div>' +
-    '<div>' + chosen.text + '</div>';
-}
+          if (step < totalSteps) {
+            delay += delayIncrease;
+            setTimeout(tick, delay);
+          } else {
+            slotName.style.transform = "translateY(0)";
+            status.textContent = "Transmission received. This is your focus for today.";
+            showResult(current);
+            spinning = false;
+            hasSpun = true;
+            button.disabled = true;
+            button.textContent = "The universe has spoken";
+          }
+        }
+
+        tick();
+      });
+
+      function showResult(chosen) {
+        slotName.textContent = chosen.name;
+        slotMantra.textContent = chosen.mantra;
+        slotDetail.textContent = chosen.text;
+      }
     })();
   </script>
 </body>
