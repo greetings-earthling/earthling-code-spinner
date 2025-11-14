@@ -183,106 +183,119 @@
   </div>
 
   <script>
-    (function () {
-      // Placeholder codes – swap these with your real 10 Codes of the Earthborn
-      const codes = [
-        {
-          name: "Earth Code 1: Earthlings are",
-          mantra: "Breathe in. Be present. Let go.",
-          text: "Today, practise simply existing where you are, without rushing to the next thing.",
-          url: "#"
-        },
-        {
-          name: "Earth Code 2: Earthlings wonder",
-          mantra: "Stay curious. Get lost. Learn forever.",
-          text: "Look at something ordinary and notice one new detail you have never seen before.",
-          url: "#"
-        },
-        {
-          name: "Earth Code 3: Earthlings try",
-          mantra: "Start small. Stay steady. Keep going.",
-          text: "Choose one tiny action and do it, even if your motivation feels low.",
-          url: "#"
-        },
-        {
-          name: "Earth Code 4: Earthlings feel",
-          mantra: "Notice. Name. Allow.",
-          text: "Give your feelings a name instead of fighting them. Let them move through.",
-          url: "#"
-        },
-        {
-          name: "Earth Code 5: Earthlings connect",
-          mantra: "Reach out. Listen. Respond.",
-          text: "Send a quick message or kind word to someone who might need it.",
-          url: "#"
-        },
-        {
-          name: "Earth Code 6: Earthlings rest",
-          mantra: "Slow down. Soften. Reset.",
-          text: "Protect one small pocket of rest today, even if it is just a few quiet minutes.",
-          url: "#"
-        },
-        {
-          name: "Earth Code 7: Earthlings create",
-          mantra: "Make. Play. Express.",
-          text: "Make something small. A note, a doodle, a sentence. Let it exist.",
-          url: "#"
-        },
-        {
-          name: "Earth Code 8: Earthlings share",
-          mantra: "Give freely. Expect little.",
-          text: "Share something that helped you with someone else who might need it.",
-          url: "#"
-        },
-        {
-          name: "Earth Code 9: Earthlings learn",
-          mantra: "Stay open. Stay teachable.",
-          text: "Treat one mistake as a teacher instead of a verdict.",
-          url: "#"
-        },
-        {
-          name: "Earth Code 10: Earthlings return",
-          mantra: "Come back. Again and again.",
-          text: "Return to a habit or practice you fell away from, gently, without guilt.",
-          url: "#"
-        }
-      ];
+(function () {
+  // 10 Earth Codes
+  const codes = [
+    {
+      name: "Earth Code 1: Earthlings are",
+      mantra: "Breathe in. Be present. Let go.",
+      text: "Today, practise simply existing where you are, without rushing to the next thing.",
+      url: "#"
+    },
+    {
+      name: "Earth Code 2: Earthlings wonder",
+      mantra: "Stay curious. Get lost. Learn forever.",
+      text: "Look at something ordinary and notice one new detail you have never seen before.",
+      url: "#"
+    },
+    {
+      name: "Earth Code 3: Earthlings try",
+      mantra: "Start small. Stay steady. Keep going.",
+      text: "Choose one tiny action and do it, even if your motivation feels low.",
+      url: "#"
+    },
+    {
+      name: "Earth Code 4: Earthlings feel",
+      mantra: "Notice. Name. Allow.",
+      text: "Give your feelings a name instead of fighting them. Let them move through.",
+      url: "#"
+    },
+    {
+      name: "Earth Code 5: Earthlings connect",
+      mantra: "Reach out. Listen. Respond.",
+      text: "Send a quick message or kind word to someone who might need it.",
+      url: "#"
+    },
+    {
+      name: "Earth Code 6: Earthlings rest",
+      mantra: "Slow down. Soften. Reset.",
+      text: "Protect one small pocket of rest today, even if it is just a few quiet minutes.",
+      url: "#"
+    },
+    {
+      name: "Earth Code 7: Earthlings create",
+      mantra: "Make. Play. Express.",
+      text: "Make something small. A note, a doodle, a sentence. Let it exist.",
+      url: "#"
+    },
+    {
+      name: "Earth Code 8: Earthlings share",
+      mantra: "Give freely. Expect little.",
+      text: "Share something that helped you with someone else who might need it.",
+      url: "#"
+    },
+    {
+      name: "Earth Code 9: Earthlings learn",
+      mantra: "Stay open. Stay teachable.",
+      text: "Treat one mistake as a teacher instead of a verdict.",
+      url: "#"
+    },
+    {
+      name: "Earth Code 10: Earthlings return",
+      mantra: "Come back. Again and again.",
+      text: "Return to a habit or practice you fell away from, gently, without guilt.",
+      url: "#"
+    }
+  ];
 
-      const wheel = document.getElementById("ecs-wheel");
-      const button = document.getElementById("ecs-spin-button");
-      const result = document.getElementById("ecs-result");
+  const wheel = document.getElementById("ecs-wheel");
+  const button = document.getElementById("ecs-spin-button");
+  const result = document.getElementById("ecs-result");
 
-      let spinning = false;
-      let currentRotation = 0;
+  let spinning = false;
+  let currentRotation = 0;
 
-      button.addEventListener("click", function () {
-        if (spinning) return;
-        spinning = true;
-        button.disabled = true;
+  button.addEventListener("click", function () {
+    if (spinning) return;
+    spinning = true;
+    button.disabled = true;
 
-        const extraSpins = 4 + Math.floor(Math.random() * 4); // 4–7 full spins
-        const randomDegrees = extraSpins * 360;
-        currentRotation += randomDegrees;
-        wheel.style.transform = "rotate(" + currentRotation + "deg)";
+    const sliceCount = 10;
+    const sliceAngle = 360 / sliceCount; // 36 degrees
+    const halfSlice = sliceAngle / 2;    // 18 degrees
 
-        const chosen = codes[Math.floor(Math.random() * codes.length)];
+    // Choose a random code index
+    const index = Math.floor(Math.random() * sliceCount);
 
-        setTimeout(function () {
-          result.innerHTML =
-            '<div class="ecs-result-title">' + chosen.name + '</div>' +
-            '<div class="ecs-result-mantra">' + chosen.mantra + '</div>' +
-            '<div>' + chosen.text + '</div>' +
-            (chosen.url && chosen.url !== "#"
-              ? '<div class="ecs-result-link"><a href="' +
-                chosen.url +
-                '" target="_blank" rel="noopener noreferrer">Read the full story</a></div>'
-              : "");
+    // Exact angle where pointer should land
+    const finalAngle = index * sliceAngle + halfSlice;
 
-          spinning = false;
-          button.disabled = false;
-        }, 3000); // match CSS transition duration
-      });
-    })();
-  </script>
+    // Add extra full spins (4 to 7)
+    const extraSpins = 4 + Math.floor(Math.random() * 4);
+    const totalRotation = extraSpins * 360 + finalAngle;
+
+    // Smooth rotation
+    wheel.style.transform = `rotate(${totalRotation}deg)`;
+
+    // Update current rotation so future spins build on this
+    currentRotation = totalRotation;
+
+    setTimeout(function () {
+      const chosen = codes[index];
+
+      result.innerHTML =
+        `<div class="ecs-result-title">${chosen.name}</div>` +
+        `<div class="ecs-result-mantra">${chosen.mantra}</div>` +
+        `<div>${chosen.text}</div>` +
+        (chosen.url && chosen.url !== "#"
+          ? `<div class="ecs-result-link"><a href="${chosen.url}" target="_blank">Read the full story</a></div>`
+          : "");
+
+      spinning = false;
+      button.disabled = false;
+    }, 3000);
+  });
+})();
+</script>
 </body>
 </html>
