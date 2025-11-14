@@ -172,23 +172,10 @@ button:disabled {
       Treat it as a tiny transmission from the universe (or at least from NeilA).
     </div>
 
-    <div class="ecs-wheel-container">
-  <div class="ecs-wheel" id="ecs-wheel">
-    <div class="ecs-labels">
-      <div class="ecs-label" style="transform: rotate(18deg) translate(0, -105px) rotate(-18deg);">are</div>
-      <div class="ecs-label" style="transform: rotate(54deg) translate(0, -105px) rotate(-54deg);">wonder</div>
-      <div class="ecs-label" style="transform: rotate(90deg) translate(0, -105px) rotate(-90deg);">care</div>
-      <div class="ecs-label" style="transform: rotate(126deg) translate(0, -105px) rotate(-126deg);">dare</div>
-      <div class="ecs-label" style="transform: rotate(162deg) translate(0, -105px) rotate(-162deg);">create</div>
-      <div class="ecs-label" style="transform: rotate(198deg) translate(0, -105px) rotate(-198deg);">grow</div>
-      <div class="ecs-label" style="transform: rotate(234deg) translate(0, -105px) rotate(-234deg);">belong</div>
-      <div class="ecs-label" style="transform: rotate(270deg) translate(0, -105px) rotate(-270deg);">tend</div>
-      <div class="ecs-label" style="transform: rotate(306deg) translate(0, -105px) rotate(-306deg);">laugh</div>
-      <div class="ecs-label" style="transform: rotate(342deg) translate(0, -105px) rotate(-342deg);">marvel</div>
-    </div>
-  </div>
+<div class="ecs-wheel-container">
+  <div class="ecs-wheel" id="ecs-wheel"></div>
   <div class="ecs-pointer">▼</div>
-  <div class="ecs-centre">Earthlings…</div>
+  <div class="ecs-centre" id="ecs-centre">Earthlings…</div>
 </div>
 
     <button id="ecs-spin-button">Spin the wheel</button>
@@ -272,6 +259,7 @@ button:disabled {
   const wheel = document.getElementById("ecs-wheel");
   const button = document.getElementById("ecs-spin-button");
   const result = document.getElementById("ecs-result");
+  const centre = document.getElementById("ecs-centre");
 
   let spinning = false;
   let currentRotation = 0;
@@ -302,19 +290,24 @@ button:disabled {
     currentRotation = totalRotation;
 
     setTimeout(function () {
-      const chosen = codes[index];
+  const chosen = codes[index];
 
-      result.innerHTML =
-        `<div class="ecs-result-title">${chosen.name}</div>` +
-        `<div class="ecs-result-mantra">${chosen.mantra}</div>` +
-        `<div>${chosen.text}</div>` +
-        (chosen.url && chosen.url !== "#"
-          ? `<div class="ecs-result-link"><a href="${chosen.url}" target="_blank">Read the full story</a></div>`
-          : "");
+  // update centre text
+  if (centre) {
+    centre.textContent = chosen.name;
+  }
 
-      spinning = false;
-      button.disabled = false;
-    }, 3000);
+  result.innerHTML =
+    `<div class="ecs-result-title">${chosen.name}</div>` +
+    `<div class="ecs-result-mantra">${chosen.mantra}</div>` +
+    `<div>${chosen.text}</div>` +
+    (chosen.url && chosen.url !== "#"
+      ? `<div class="ecs-result-link"><a href="${chosen.url}" target="_blank">Read the full story</a></div>`
+      : "");
+
+  spinning = false;
+  button.disabled = false;
+}, 3000);
   });
 })();
 </script>
