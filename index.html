@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Earth Code Spinner</title>
+  <title>Earthling Code Oracle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- IBM Plex Sans -->
@@ -33,73 +33,59 @@
     h1 {
       font-size: 1.5rem;
       font-weight: 600;
-      margin: 0 0 0.4rem;
+      margin: 0 0 0.5rem;
     }
 
     .ecs-subtext {
       color: #4b5563;
       font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.5;
+      margin-bottom: 1.4rem;
+      line-height: 1.6;
     }
 
-    /* Slot machine styling */
+    /* Slot window */
 
     .slot-wrapper {
       display: flex;
       justify-content: center;
-      margin-bottom: 0.8rem;
-    }
-
-    .slot-body {
-      background: #111827;
-      padding: 0.6rem 0.8rem 1.1rem;
-      border-radius: 18px;
-      box-shadow: 0 12px 25px rgba(15,23,42,0.4);
+      margin-bottom: 0.4rem;
     }
 
     .slot-window {
       background: #f9fafb;
-      border-radius: 12px;
-      border: 2px solid #111827;
-      padding: 0.5rem 0.9rem;
-      min-width: 230px;
-      min-height: 56px;
+      border-radius: 14px;
+      border: 2px solid #030712;
+      padding: 0.65rem 1rem;
+      min-width: 240px;
+      min-height: 58px;
       display: flex;
       align-items: center;
       justify-content: center;
       box-sizing: border-box;
       overflow: hidden;
+      box-shadow: 0 10px 25px rgba(15,23,42,0.12);
     }
 
     .slot-text {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 600;
-      color: #111827;
+      color: #030712;
       white-space: nowrap;
-      transition: transform 0.12s;
-    }
-
-    .slot-machine-top {
-      width: 60%;
-      height: 6px;
-      background: #4b5563;
-      border-radius: 999px;
-      margin: 0 auto 0.45rem;
-      opacity: 0.5;
+      transition: transform 0.1s;
     }
 
     .slot-status {
       font-size: 0.8rem;
-      color: #e5e7eb;
+      color: #6b7280;
       margin-top: 0.35rem;
+      min-height: 1em;
     }
 
     /* Button */
 
     button {
-      margin-top: 0.6rem;
-      padding: 0.6rem 1.7rem;
+      margin-top: 0.7rem;
+      padding: 0.6rem 1.9rem;
       font-size: 1rem;
       font-weight: 500;
       border-radius: 999px;
@@ -107,7 +93,7 @@
       background: #030712;
       color: #ffffff;
       cursor: pointer;
-      transition: 0.18s;
+      transition: 0.15s;
     }
 
     button:hover:not(:disabled) {
@@ -124,7 +110,7 @@
     /* Result text */
 
     .ecs-result {
-      margin-top: 1.3rem;
+      margin-top: 1.4rem;
       text-align: left;
       font-size: 0.95rem;
       line-height: 1.6;
@@ -154,7 +140,7 @@
       }
 
       .slot-window {
-        min-width: 210px;
+        min-width: 220px;
       }
 
       .slot-text {
@@ -165,27 +151,24 @@
 </head>
 <body>
   <div class="ecs-root">
-    <h1>Earth Code Spinner</h1>
+    <h1>Earthling Code Oracle</h1>
     <div class="ecs-subtext">
-      Spin to get today’s Earthling focus.  
-      A tiny daily nudge from the Earthling Code.
+      Let the universe guide you.  
+      Today, focus on this part of the Earthling Code.
     </div>
 
     <div class="slot-wrapper">
-      <div class="slot-body">
-        <div class="slot-machine-top"></div>
-        <div class="slot-window">
-          <div class="slot-text" id="slot-text">Earthlings…</div>
-        </div>
-        <div class="slot-status" id="slot-status">Ready to spin.</div>
+      <div class="slot-window">
+        <div class="slot-text" id="slot-text">Earthlings…</div>
       </div>
     </div>
+    <div class="slot-status" id="slot-status">Awaiting transmission.</div>
 
-    <button id="spin-btn">Spin for today</button>
+    <button id="spin-btn">Let fate decide</button>
 
     <div class="ecs-result" id="ecs-result">
-      <div class="ecs-result-title">Waiting for today’s code…</div>
-      <div>Tap the button above to let the Earthling Code choose your focus.</div>
+      <div class="ecs-result-title">No code selected yet.</div>
+      <div>Tap the button above and let today’s focus choose you instead of the other way around.</div>
     </div>
 
     <div class="ecs-footer">
@@ -199,52 +182,52 @@
         {
           name: "Earthlings are",
           mantra: "Breathe in. Be present. Let go.",
-          text: "Today, give yourself permission to slow down and simply exist where you are."
+          text: "Settle into your body for a moment. Notice your breath. Let today begin from there."
         },
         {
           name: "Earthlings wonder",
           mantra: "Stay curious. Get lost. Learn forever.",
-          text: "Notice something ordinary and study it like a mystery. Let curiosity lead you."
+          text: "Let one question lead you. Follow a thread of curiosity without needing it to be useful."
         },
         {
           name: "Earthlings care",
           mantra: "Be gentle. Stay brave. Lead with love.",
-          text: "Choose one small way to be kinder today, to yourself or to someone else."
+          text: "Choose one small act of care, for yourself or for someone else, and follow through."
         },
         {
           name: "Earthlings dare",
           mantra: "Be bold. Be true. Be whole.",
-          text: "Take one small risk that feels honest. Say the thing. Try the thing."
+          text: "Take one tiny brave step. Say the honest thing, try the idea, send the message."
         },
         {
           name: "Earthlings create",
           mantra: "Make beauty. Share truth. Leave traces.",
-          text: "Make something tiny. A sentence, a sketch, a note. Let it exist in the world."
+          text: "Make something small and real. A note, a sketch, a line of music. Let it exist."
         },
         {
           name: "Earthlings grow",
           mantra: "Let go. Adapt. Begin again.",
-          text: "Release one old thought that is holding you back and step into a new one."
+          text: "Release one story about who you have to be, and allow a kinder version of you to start."
         },
         {
           name: "Earthlings belong",
           mantra: "Welcome others. Make space. Stay open.",
-          text: "Invite someone in, even in a small way. A message, a smile, a seat at the table."
+          text: "Offer someone a feeling of belonging, even in a tiny way. A hello, an invite, a seat."
         },
         {
           name: "Earthlings tend",
           mantra: "Share. Be the person you once needed. Care.",
-          text: "Offer care where you can. Water a friendship, a habit, or a part of yourself."
+          text: "Tend to something that matters. A friendship, a habit, a body, a corner of your world."
         },
         {
           name: "Earthlings laugh",
           mantra: "Laugh. Spread joy. Do not take things so seriously.",
-          text: "Let yourself laugh at something silly today. Joy is a serious kind of medicine."
+          text: "Let yourself laugh today, especially at your own seriousness. Joy shifts the whole orbit."
         },
         {
           name: "Earthlings marvel",
           mantra: "Let wonder guide you. Be grateful. Move forward without needing all the answers.",
-          text: "Look up, or out, or within, and let yourself be amazed by one small thing."
+          text: "Pause somewhere quiet. Look up, or out, or within, and let wonder wash over you."
         }
       ];
 
@@ -259,10 +242,13 @@
         if (spinning) return;
         spinning = true;
         button.disabled = true;
-        status.textContent = "Spinning…";
+        status.textContent = "Consulting the cosmos…";
 
-        const totalSteps = 22 + Math.floor(Math.random() * 10); // 22–31 steps
-        let delay = 70; // start fast
+        const minSteps = 14;
+        const maxSteps = 20;
+        const totalSteps = minSteps + Math.floor(Math.random() * (maxSteps - minSteps + 1));
+        let delay = 35;       // start fast
+        const delayIncrease = 5;
         let step = 0;
         let index = Math.floor(Math.random() * codes.length);
 
@@ -271,18 +257,16 @@
           const current = codes[index];
           slotText.textContent = current.name;
 
-          // tiny vertical jitter to feel slot like
-          slotText.style.transform =
-            step % 2 === 0 ? "translateY(2px)" : "translateY(-2px)";
-
+          // subtle jitter
+          slotText.style.transform = step % 2 === 0 ? "translateY(1px)" : "translateY(-1px)";
           step++;
 
           if (step < totalSteps) {
-            delay += 18; // slow down
+            delay += delayIncrease;
             setTimeout(tick, delay);
           } else {
             slotText.style.transform = "translateY(0)";
-            status.textContent = "Locked in.";
+            status.textContent = "Transmission received.";
             showResult(current);
             spinning = false;
             button.disabled = false;
@@ -294,9 +278,9 @@
 
       function showResult(chosen) {
         result.innerHTML =
-          '<div class="ecs-result-title">' + chosen.name + "</div>" +
-          '<div class="ecs-result-mantra">' + chosen.mantra + "</div>" +
-          "<div>" + chosen.text + "</div>";
+          '<div class="ecs-result-title">' + chosen.name + '</div>' +
+          '<div class="ecs-result-mantra">' + chosen.mantra + '</div>' +
+          '<div>' + chosen.text + '</div>';
       }
     })();
   </script>
