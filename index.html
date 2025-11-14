@@ -4,185 +4,188 @@
   <meta charset="UTF-8">
   <title>Earth Code Spinner</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- IBM Plex Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
     body {
-  font-family: "IBM Plex Sans", system-ui, sans-serif;
-  background: #E6DFEB;
-  color: #030712;
-  margin: 0;
-  padding: 2rem 1rem;
-  display: flex;
-  justify-content: center;
-}
+      font-family: "IBM Plex Sans", system-ui, sans-serif;
+      background: #E6DFEB;
+      color: #030712;
+      margin: 0;
+      padding: 2rem 1rem;
+      display: flex;
+      justify-content: center;
+    }
 
-.ecs-root {
-  max-width: 420px;
-  width: 100%;
-  text-align: center;
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 2rem 1.5rem 2.2rem;
-  box-shadow: 0 18px 45px rgba(0,0,0,0.08);
-}
+    .ecs-root {
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 1.5rem 2.2rem;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.08);
+      box-sizing: border-box;
+    }
 
-/* Title + subtext */
-h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin: 0 0 0.4rem;
-}
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 0.4rem;
+    }
 
-.ecs-subtext {
-  color: #4b5563;
-  font-size: 0.95rem;
-  margin-bottom: 1.4rem;
-}
+    .ecs-subtext {
+      color: #4b5563;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
 
-/* Wheel styling */
-.ecs-wheel-container {
-  position: relative;
-  width: 260px;
-  height: 260px;
-  margin: 0 auto 1rem;
-}
+    /* Slot machine styling */
 
-.ecs-wheel {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 4px solid #030712;
-  box-sizing: border-box;
-  transition: transform 3s cubic-bezier(0.19, 1, 0.22, 1);
+    .slot-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.8rem;
+    }
 
-  /* Soft pastel slices matching your brand */
-  background: conic-gradient(
-    #D2C4E8 0deg 36deg,
-    #F5C8DA 36deg 72deg,
-    #CDE3F8 72deg 108deg,
-    #BFEAD0 108deg 144deg,
-    #F8E1B6 144deg 180deg,
-    #E5CDEE 180deg 216deg,
-    #F6D499 216deg 252deg,
-    #C5E9C2 252deg 288deg,
-    #BDD6F7 288deg 324deg,
-    #EAD3F8 324deg 360deg
-  );
-}
+    .slot-body {
+      background: #111827;
+      padding: 0.6rem 0.8rem 1.1rem;
+      border-radius: 18px;
+      box-shadow: 0 12px 25px rgba(15,23,42,0.4);
+    }
 
-.ecs-pointer {
-  position: absolute;
-  top: -22px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.6rem;
-}
+    .slot-window {
+      background: #f9fafb;
+      border-radius: 12px;
+      border: 2px solid #111827;
+      padding: 0.5rem 0.9rem;
+      min-width: 230px;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
 
-/* Centre text */
-.ecs-centre {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #ffffff;
-  border-radius: 50%;
-  border: 2px solid #030712;
-  width: 95px;
-  height: 95px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-align: center;
-}
+    .slot-text {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #111827;
+      white-space: nowrap;
+      transition: transform 0.12s;
+    }
 
-/* Button */
-button {
-  margin-top: 0.3rem;
-  padding: 0.6rem 1.7rem;
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius: 999px;
-  border: 1px solid #885DA7;
-  background: #885DA7;
-  color: #ffffff;
-  cursor: pointer;
-  transition: 0.2s;
-}
+    .slot-machine-top {
+      width: 60%;
+      height: 6px;
+      background: #4b5563;
+      border-radius: 999px;
+      margin: 0 auto 0.45rem;
+      opacity: 0.5;
+    }
 
-button:hover {
-  background: #6d4786;
-}
+    .slot-status {
+      font-size: 0.8rem;
+      color: #e5e7eb;
+      margin-top: 0.35rem;
+    }
 
-button:disabled {
-  opacity: 0.6;
-}
+    /* Button */
 
-/* Result section */
-.ecs-result {
-  margin-top: 1.2rem;
-  text-align: left;
-  font-size: 0.95rem;
-  line-height: 1.55;
-  color: #222;
-}
+    button {
+      margin-top: 0.6rem;
+      padding: 0.6rem 1.7rem;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 999px;
+      border: 1px solid #030712;
+      background: #030712;
+      color: #ffffff;
+      cursor: pointer;
+      transition: 0.18s;
+    }
 
-.ecs-result-title {
-  font-size: 1.05rem;
-  font-weight: 600;
-}
+    button:hover:not(:disabled) {
+      background: #111827;
+      transform: translateY(-1px);
+    }
 
-.ecs-result-mantra {
-  font-style: italic;
-  margin: 0.2rem 0 0.5rem;
-  color: #555;
-}
+    button:disabled {
+      opacity: 0.6;
+      cursor: default;
+      transform: none;
+    }
 
-/* Wheel labels */
-.ecs-labels {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
+    /* Result text */
 
-.ecs-label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform-origin: center center;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #030712;
-  text-transform: capitalize;
-}
+    .ecs-result {
+      margin-top: 1.3rem;
+      text-align: left;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #222;
+    }
 
-/* Footer */
-.ecs-footer {
-  margin-top: 1.7rem;
-  font-size: 0.8rem;
-  color: #6b7280;
-}
+    .ecs-result-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .ecs-result-mantra {
+      font-style: italic;
+      margin: 0.2rem 0 0.5rem;
+      color: #555;
+    }
+
+    .ecs-footer {
+      margin-top: 1.7rem;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    @media (max-width: 480px) {
+      .ecs-root {
+        padding: 1.7rem 1rem 2rem;
+      }
+
+      .slot-window {
+        min-width: 210px;
+      }
+
+      .slot-text {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="ecs-root">
     <h1>Earth Code Spinner</h1>
     <div class="ecs-subtext">
-      Spin the wheel to choose today’s focus.  
-      Treat it as a tiny transmission from the universe (or at least from NeilA).
+      Spin to get today’s Earthling focus.  
+      A tiny daily nudge from the Earthling Code.
     </div>
 
-<div class="ecs-wheel-container">
-  <div class="ecs-wheel" id="ecs-wheel"></div>
-  <div class="ecs-pointer">▼</div>
-  <div class="ecs-centre" id="ecs-centre">Earthlings…</div>
-</div>
+    <div class="slot-wrapper">
+      <div class="slot-body">
+        <div class="slot-machine-top"></div>
+        <div class="slot-window">
+          <div class="slot-text" id="slot-text">Earthlings…</div>
+        </div>
+        <div class="slot-status" id="slot-status">Ready to spin.</div>
+      </div>
+    </div>
 
-    <button id="ecs-spin-button">Spin the wheel</button>
+    <button id="spin-btn">Spin for today</button>
 
     <div class="ecs-result" id="ecs-result">
-      <div class="ecs-result-title">Waiting for a spin...</div>
-      <div>Click the button to get your Earth Code for today.</div>
+      <div class="ecs-result-title">Waiting for today’s code…</div>
+      <div>Tap the button above to let the Earthling Code choose your focus.</div>
     </div>
 
     <div class="ecs-footer">
@@ -191,125 +194,111 @@ button:disabled {
   </div>
 
   <script>
-(function () {
-  // 10 Earth Codes
-    const codes = [
-    {
-      name: "Earthlings are",
-      mantra: "Breathe in. Be present. Let go.",
-      text: "Today, give yourself permission to slow down and simply exist where you are.",
-      url: "#"
-    },
-    {
-      name: "Earthlings wonder",
-      mantra: "Stay curious. Get lost. Learn forever.",
-      text: "Notice something ordinary and study it like a mystery. Let curiosity lead you.",
-      url: "#"
-    },
-    {
-      name: "Earthlings care",
-      mantra: "Be gentle. Stay brave. Lead with love.",
-      text: "Choose one small way to be kinder today, to yourself or to someone else.",
-      url: "#"
-    },
-    {
-      name: "Earthlings dare",
-      mantra: "Be bold. Be true. Be whole.",
-      text: "Take one small risk that feels honest. Say the thing. Try the thing.",
-      url: "#"
-    },
-    {
-      name: "Earthlings create",
-      mantra: "Make beauty. Share truth. Leave traces.",
-      text: "Make something tiny. A sentence, a sketch, a note. Let it exist in the world.",
-      url: "#"
-    },
-    {
-      name: "Earthlings grow",
-      mantra: "Let go. Adapt. Begin again.",
-      text: "Release one old thought that is holding you back and step into a new one.",
-      url: "#"
-    },
-    {
-      name: "Earthlings belong",
-      mantra: "Welcome others. Make space. Stay open.",
-      text: "Invite someone in, even in a small way. A message, a smile, a seat at the table.",
-      url: "#"
-    },
-    {
-      name: "Earthlings tend",
-      mantra: "Share. Be the person you once needed. Care.",
-      text: "Offer care where you can. Water a friendship, a habit, or a part of yourself.",
-      url: "#"
-    },
-    {
-      name: "Earthlings laugh",
-      mantra: "Laugh. Spread joy. Do not take things so seriously.",
-      text: "Let yourself laugh at something silly today. Joy is a serious kind of medicine.",
-      url: "#"
-    },
-    {
-      name: "Earthlings marvel",
-      mantra: "Let wonder guide you. Be grateful. Move forward without needing all the answers.",
-      text: "Look up, or out, or within, and let yourself be amazed by one small thing.",
-      url: "#"
-    }
-  ];
+    (function () {
+      const codes = [
+        {
+          name: "Earthlings are",
+          mantra: "Breathe in. Be present. Let go.",
+          text: "Today, give yourself permission to slow down and simply exist where you are."
+        },
+        {
+          name: "Earthlings wonder",
+          mantra: "Stay curious. Get lost. Learn forever.",
+          text: "Notice something ordinary and study it like a mystery. Let curiosity lead you."
+        },
+        {
+          name: "Earthlings care",
+          mantra: "Be gentle. Stay brave. Lead with love.",
+          text: "Choose one small way to be kinder today, to yourself or to someone else."
+        },
+        {
+          name: "Earthlings dare",
+          mantra: "Be bold. Be true. Be whole.",
+          text: "Take one small risk that feels honest. Say the thing. Try the thing."
+        },
+        {
+          name: "Earthlings create",
+          mantra: "Make beauty. Share truth. Leave traces.",
+          text: "Make something tiny. A sentence, a sketch, a note. Let it exist in the world."
+        },
+        {
+          name: "Earthlings grow",
+          mantra: "Let go. Adapt. Begin again.",
+          text: "Release one old thought that is holding you back and step into a new one."
+        },
+        {
+          name: "Earthlings belong",
+          mantra: "Welcome others. Make space. Stay open.",
+          text: "Invite someone in, even in a small way. A message, a smile, a seat at the table."
+        },
+        {
+          name: "Earthlings tend",
+          mantra: "Share. Be the person you once needed. Care.",
+          text: "Offer care where you can. Water a friendship, a habit, or a part of yourself."
+        },
+        {
+          name: "Earthlings laugh",
+          mantra: "Laugh. Spread joy. Do not take things so seriously.",
+          text: "Let yourself laugh at something silly today. Joy is a serious kind of medicine."
+        },
+        {
+          name: "Earthlings marvel",
+          mantra: "Let wonder guide you. Be grateful. Move forward without needing all the answers.",
+          text: "Look up, or out, or within, and let yourself be amazed by one small thing."
+        }
+      ];
 
-  const wheel = document.getElementById("ecs-wheel");
-  const button = document.getElementById("ecs-spin-button");
-  const result = document.getElementById("ecs-result");
-  const centre = document.getElementById("ecs-centre");
+      const slotText = document.getElementById("slot-text");
+      const status = document.getElementById("slot-status");
+      const result = document.getElementById("ecs-result");
+      const button = document.getElementById("spin-btn");
 
-  let spinning = false;
-  let currentRotation = 0;
+      let spinning = false;
 
-  button.addEventListener("click", function () {
-    if (spinning) return;
-    spinning = true;
-    button.disabled = true;
+      button.addEventListener("click", function () {
+        if (spinning) return;
+        spinning = true;
+        button.disabled = true;
+        status.textContent = "Spinning…";
 
-    const sliceCount = 10;
-    const sliceAngle = 360 / sliceCount; // 36 degrees
-    const halfSlice = sliceAngle / 2;    // 18 degrees
+        const totalSteps = 22 + Math.floor(Math.random() * 10); // 22–31 steps
+        let delay = 70; // start fast
+        let step = 0;
+        let index = Math.floor(Math.random() * codes.length);
 
-    // Choose a random code index
-    const index = Math.floor(Math.random() * sliceCount);
+        function tick() {
+          index = (index + 1) % codes.length;
+          const current = codes[index];
+          slotText.textContent = current.name;
 
-    // Exact angle where pointer should land
-    const finalAngle = index * sliceAngle + halfSlice;
+          // tiny vertical jitter to feel slot like
+          slotText.style.transform =
+            step % 2 === 0 ? "translateY(2px)" : "translateY(-2px)";
 
-    // Add extra full spins (4 to 7)
-    const extraSpins = 4 + Math.floor(Math.random() * 4);
-    const totalRotation = extraSpins * 360 + finalAngle;
+          step++;
 
-    // Smooth rotation
-    wheel.style.transform = `rotate(${totalRotation}deg)`;
+          if (step < totalSteps) {
+            delay += 18; // slow down
+            setTimeout(tick, delay);
+          } else {
+            slotText.style.transform = "translateY(0)";
+            status.textContent = "Locked in.";
+            showResult(current);
+            spinning = false;
+            button.disabled = false;
+          }
+        }
 
-    // Update current rotation so future spins build on this
-    currentRotation = totalRotation;
+        tick();
+      });
 
-    setTimeout(function () {
-  const chosen = codes[index];
-
-  // update centre text
-  if (centre) {
-    centre.textContent = chosen.name;
-  }
-
-  result.innerHTML =
-    `<div class="ecs-result-title">${chosen.name}</div>` +
-    `<div class="ecs-result-mantra">${chosen.mantra}</div>` +
-    `<div>${chosen.text}</div>` +
-    (chosen.url && chosen.url !== "#"
-      ? `<div class="ecs-result-link"><a href="${chosen.url}" target="_blank">Read the full story</a></div>`
-      : "");
-
-  spinning = false;
-  button.disabled = false;
-}, 3000);
-  });
-})();
-</script>
+      function showResult(chosen) {
+        result.innerHTML =
+          '<div class="ecs-result-title">' + chosen.name + "</div>" +
+          '<div class="ecs-result-mantra">' + chosen.mantra + "</div>" +
+          "<div>" + chosen.text + "</div>";
+      }
+    })();
+  </script>
 </body>
 </html>
