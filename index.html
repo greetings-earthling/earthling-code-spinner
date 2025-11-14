@@ -248,52 +248,59 @@
       const result = document.getElementById("ecs-result");
       const button = document.getElementById("spin-btn");
 
-      let spinning = false;
+     let spinning = false;
+let hasSpun = false;
 
       button.addEventListener("click", function () {
-        if (spinning) return;
-        spinning = true;
-        button.disabled = true;
-        status.textContent = "Consulting the cosmos…";
+  if (hasSpun) {
+    status.textContent = "One spin per visit. Come back tomorrow.";
+    return;
+  }
+  if (spinning) return;
+  spinning = true;
+  button.disabled = true;
+  status.textContent = "Consulting the cosmos…";
 
-        const minSteps = 20;
-        const maxSteps = 30;
-        const totalSteps = minSteps + Math.floor(Math.random() * (maxSteps - minSteps + 1));
-        let delay = 35;       // start fast
-        const delayIncrease = 6;  // slows down a touch more
-        let step = 0;
-        let index = Math.floor(Math.random() * codes.length);
+  const minSteps = 20;
+  const maxSteps = 30;
+  const totalSteps = minSteps + Math.floor(Math.random() * (maxSteps - minSteps + 1));
+  let delay = 35;
+  const delayIncrease = 6;
+  let step = 0;
+  let index = Math.floor(Math.random() * codes.length);
 
-        function tick() {
-          index = (index + 1) % codes.length;
-          const current = codes[index];
-          slotText.textContent = current.name;
+  function tick() {
+    index = (index + 1) % codes.length;
+    const current = codes[index];
+    slotText.textContent = current.name;
 
-          // subtle jitter
-          slotText.style.transform = step % 2 === 0 ? "translateY(1px)" : "translateY(-1px)";
-          step++;
+    slotText.style.transform = step % 2 === 0 ? "translateY(1px)" : "translateY(-1px)";
+    step++;
 
-          if (step < totalSteps) {
-            delay += delayIncrease;
-            setTimeout(tick, delay);
-          } else {
-            slotText.style.transform = "translateY(0)";
-            status.textContent = "Transmission received.";
-            showResult(current);
-            spinning = false;
-            button.disabled = false;
-          }
-        }
+    if (step < totalSteps) {
+      delay += delayIncrease;
+      setTimeout(tick, delay);
+    } else {
+      slotText.style.transform = "translateY(0)";
+      status.textContent = "Transmission received. That is your focus for today.";
+      showResult(current);
+      spinning = false;
+      hasSpun = true;
+      button.disabled = true;
+      button.textContent = "Come back tomorrow";
+    }
+  }
 
-        tick();
-      });
+  tick();
+});
 
-      function showResult(chosen) {
-        result.innerHTML =
-          '<div class="ecs-result-title">' + chosen.name + '</div>' +
-          '<div class="ecs-result-mantra">' + chosen.mantra + '</div>' +
-          '<div>' + chosen.text + '</div>';
-      }
+   function showResult(chosen) {
+  result.innerHTML =
+    '<div class="ecs-result-label">Today’s focus</div>' +
+    '<div class="ecs-result-title">' + chosen.name + '</div>' +
+    '<div class="ecs-result-mantra">' + chosen.mantra + '</div>' +
+    '<div>' + chosen.text + '</div>';
+}
     })();
   </script>
 </body>
