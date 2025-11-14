@@ -9,166 +9,145 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      font-family: "IBM Plex Sans", system-ui, sans-serif;
-      background: #ffffff;
-      color: #030712;
-      margin: 0;
-      padding: 0;
-    }
+body {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  background: #ffffff;
+  color: #030712;
+  margin: 0;
+  padding: 0;
+}
 
-    .ecs-root {
-      max-width: 600px;
-      width: 100%;
-      margin: 2rem auto 0;
-      text-align: center;
-      background: transparent;
-      border-radius: 0;
-      padding: 0 0 1.5rem;
-      box-shadow: none;
-      box-sizing: border-box;
-    }
+.ecs-root {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  background: transparent;
+  padding: 0 0 1.5rem;
+  box-sizing: border-box;
+}
 
-    h1 {
-      font-size: 1.6rem;
-      font-weight: 600;
-      margin: 0 0 0.5rem;
-    }
+h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
 
-    .ecs-subtext {
-      color: #4b5563;
-      font-size: 0.95rem;
-      margin-bottom: 1.4rem;
-      line-height: 1.6;
-    }
+.ecs-subtext {
+  color: #4b5563;
+  font-size: 0.95rem;
+  margin-bottom: 1.4rem;
+  line-height: 1.6;
+}
 
-    /* Oracle window */
+/* Oracle window */
+.slot-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
 
-    .slot-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 0.5rem;
-    }
+.slot-window {
+  background: #f9fafb;
+  border-radius: 16px;
+  border: 2px solid #030712;
+  padding: 0.9rem 1.1rem;
+  width: 100%;
+  max-width: 400px;
+  min-height: 135px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(15,23,42,0.12);
+  text-align: left;
+}
 
-    .slot-window {
-      background: #f9fafb;
-      border-radius: 16px;
-      border: 2px solid #030712;
-      padding: 0.9rem 1.1rem;
-      width: 100%;
-      max-width: 400px;
-      min-height: 135px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(15,23,42,0.12);
-      text-align: left;
-    }
+.slot-content {
+  width: 100%;
+}
 
-    .slot-content {
-      width: 100%;
-    }
+.slot-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 0.15rem;
+}
 
-    .slot-label {
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #6b7280;
-      margin-bottom: 0.15rem;
-    }
+.slot-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #030712;
+  margin-bottom: 0.15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-    .slot-name {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #030712;
-      margin-bottom: 0.2rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+.slot-mantra {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.4rem;
+}
 
-    .slot-mantra {
-      font-style: italic;
-      font-size: 0.9rem;
-      color: #555;
-      margin-bottom: 0.4rem;
-    }
+.slot-text-detail {
+  font-size: 0.9rem;
+  color: #374151;
+  line-height: 1.5;
+}
 
-    .slot-text-detail {
-      font-size: 0.9rem;
-      color: #374151;
-      line-height: 1.5;
-    }
+.slot-status {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 0.35rem;
+  min-height: 1em;
+}
 
-    .slot-status {
-      font-size: 0.8rem;
-      color: #6b7280;
-      margin-top: 0.35rem;
-      min-height: 1em;
-    }
+/* Button */
+button {
+  margin-top: 0.9rem;
+  padding: 0.65rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 999px;
+  border: 1px solid #885DA7;
+  background: #885DA7;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 0.15s;
+}
 
-    .oracle-stats {
-      margin-top: 0.8rem;
-      font-size: 0.85rem;
-      color: #4b5563;
-      text-align: left;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-    }
+button:hover:not(:disabled) {
+  background: #6d4786;
+  border-color: #6d4786;
+  transform: translateY(-1px);
+}
 
-    .oracle-stats strong {
-      font-weight: 600;
-      color: #111827;
-    }
+button:disabled {
+  opacity: 0.65;
+  cursor: default;
+  background: #9ca3af;
+  border-color: #9ca3af;
+  transform: none;
+}
 
-    /* Button */
+@media (max-width: 480px) {
+  .ecs-root {
+    padding: 1.7rem 1rem 2rem;
+  }
 
-    button {
-      margin-top: 0.9rem;
-      padding: 0.65rem 2rem;
-      font-size: 1rem;
-      font-weight: 500;
-      border-radius: 999px;
-      border: 1px solid #885DA7;
-      background: #885DA7;
-      color: #ffffff;
-      cursor: pointer;
-      transition: 0.15s;
-    }
+  .slot-window {
+    min-width: 220px;
+  }
 
-    button:hover:not(:disabled) {
-      background: #6d4786;
-      border-color: #6d4786;
-      transform: translateY(-1px);
-    }
-
-    button:disabled {
-      opacity: 0.65;
-      cursor: default;
-      background: #9ca3af;
-      border-color: #9ca3af;
-      transform: none;
-    }
-
-    @media (max-width: 480px) {
-      .ecs-root {
-        padding: 0 1rem 1.5rem;
-        margin-top: 1.5rem;
-      }
-
-      .slot-window {
-        max-width: 100%;
-      }
-
-      .slot-name {
-        font-size: 1.15rem;
-      }
-    }
+  .slot-name {
+    font-size: 1.15rem;
+  }
+}
   </style>
 </head>
 <body>
@@ -190,194 +169,133 @@
       </div>
     </div>
     <div class="slot-status" id="slot-status">Awaiting transmission.</div>
-    <div class="oracle-stats" id="oracle-stats"></div>
 
     <button id="spin-btn">Let fate decide</button>
   </div>
 
   <script>
-    (function () {
-      const codes = [
-        {
-          name: "Earthlings are",
-          mantra: "Breathe in. Be present. Let go.",
-          text: "Today, return to yourself. Slow the pace. Anchor into the moment you’re actually in."
-        },
-        {
-          name: "Earthlings wonder",
-          mantra: "Stay curious. Get lost. Learn forever.",
-          text: "Today, look closer. Ask questions. Notice what hides in plain sight."
-        },
-        {
-          name: "Earthlings care",
-          mantra: "Be gentle. Stay brave. Lead with love.",
-          text: "Today, soften. Offer one small act of care without expecting anything in return."
-        },
-        {
-          name: "Earthlings dare",
-          mantra: "Be bold. Be true. Be whole.",
-          text: "Today, be brave in one tiny way. Say the truth. Try the idea. Take the step."
-        },
-        {
-          name: "Earthlings create",
-          mantra: "Make beauty. Share truth. Leave traces.",
-          text: "Today, make something small. A sentence, a sketch, a note. Let it exist."
-        },
-        {
-          name: "Earthlings grow",
-          mantra: "Let go. Adapt. Begin again.",
-          text: "Today, release one thought you’ve outgrown. Allow a kinder version of you to start."
-        },
-        {
-          name: "Earthlings belong",
-          mantra: "Welcome others. Make space. Stay open.",
-          text: "Today, offer belonging. A message, an invite, a moment that helps someone feel seen."
-        },
-        {
-          name: "Earthlings tend",
-          mantra: "Share. Be the person you once needed. Care.",
-          text: "Today, tend to something neglected. A friendship, a habit, a hope."
-        },
-        {
-          name: "Earthlings laugh",
-          mantra: "Laugh. Spread joy. Do not take things so seriously.",
-          text: "Today, find one moment of humour. Let yourself laugh. Joy resets the orbit."
-        },
-        {
-          name: "Earthlings marvel",
-          mantra: "Let wonder guide you. Be grateful. Move forward without needing all the answers.",
-          text: "Today, pause long enough to feel wonder. Let gratitude rise naturally."
-        }
-      ];
+(function () {
 
-      const slotName = document.getElementById("slot-name");
-      const slotMantra = document.getElementById("slot-mantra");
-      const slotDetail = document.getElementById("slot-text-detail");
-      const status = document.getElementById("slot-status");
-      const statsEl = document.getElementById("oracle-stats");
-      const button = document.getElementById("spin-btn");
+  const codes = [
+    {
+      name: "Earthlings are",
+      mantra: "Breathe in. Be present. Let go.",
+      text: "Today, return to yourself. Slow the pace, breathe deeper, and anchor into the moment you’re actually in."
+    },
+    {
+      name: "Earthlings wonder",
+      mantra: "Stay curious. Get lost. Learn forever.",
+      text: "Today, look closer. Ask questions. Don't take things for granted."
+    },
+    {
+      name: "Earthlings care",
+      mantra: "Be gentle. Stay brave. Lead with love.",
+      text: "Offer a small act of care to someone, or to yourself, without needing anything in return."
+    },
+    {
+      name: "Earthlings dare",
+      mantra: "Be bold. Be true. Be whole.",
+      text: "Be brave in one tiny way. Say the truth, try the idea, or take the step you’ve been avoiding."
+    },
+    {
+      name: "Earthlings create",
+      mantra: "Make beauty. Share truth. Leave traces.",
+      text: "Make something. Anything. A sentence, a sketch, a note, a sound. Creation begins small."
+    },
+    {
+      name: "Earthlings grow",
+      mantra: "Let go. Adapt. Begin again.",
+      text: "Release something you’ve outgrown. Let go gently, and step into the version of you trying to emerge."
+    },
+    {
+      name: "Earthlings belong",
+      mantra: "Welcome others. Make space. Stay open.",
+      text: "Offer belonging. Invite someone in. Let someone feel less alone because of you."
+    },
+    {
+      name: "Earthlings tend",
+      mantra: "Share. Be the person you once needed. Care.",
+      text: "Tend to something that matters. A friendship, a habit, a body, a corner of your world."
+    },
+    {
+      name: "Earthlings laugh",
+      mantra: "Laugh. Spread joy. Do not take things so seriously.",
+      text: "Let yourself laugh today, especially at your own seriousness. Joy shifts the whole orbit."
+    },
+    {
+      name: "Earthlings marvel",
+      mantra: "Let wonder guide you. Be grateful. Move forward without needing all the answers.",
+      text: "Pause long enough to feel wonder. Let gratitude rise naturally, without forcing answers."
+    }
+  ];
 
-      let spinning = false;
-      let hasSpun = false;
+  const slotName = document.getElementById("slot-name");
+  const slotMantra = document.getElementById("slot-mantra");
+  const slotDetail = document.getElementById("slot-text-detail");
+  const status = document.getElementById("slot-status");
+  const button = document.getElementById("spin-btn");
 
-      // Load stats from localStorage
-      let totalSpins = parseInt(localStorage.getItem("oracleTotalSpins") || "0", 10);
-      let codeCounts;
-      try {
-        codeCounts = JSON.parse(localStorage.getItem("oracleCodeCounts") || "{}") || {};
-      } catch (e) {
-        codeCounts = {};
-      }
-      let lastFocusName = localStorage.getItem("oracleLastFocusName");
+  let spinning = false;
+  let hasSpun = false;
 
-      // Helper to apply a focus to the UI without changing stats
-      function applyFocus(chosen) {
-        slotName.textContent = chosen.name;
-        slotMantra.textContent = chosen.mantra;
-        slotDetail.textContent = chosen.text;
-      }
+  button.addEventListener("click", function () {
+    if (hasSpun) {
+      status.textContent = "The universe has spoken. Come back tomorrow.";
+      return;
+    }
+    if (spinning) return;
 
-      // Render stats block
-      function updateStatsBlock(currentName) {
-        if (!statsEl) return;
-        if (!totalSpins || !currentName) {
-          statsEl.textContent = "";
-          return;
-        }
+    spinning = true;
+    button.disabled = true;
+    status.textContent = "Consulting the cosmos…";
 
-        const currentCount = codeCounts[currentName] || 0;
+    // clear content
+    slotMantra.textContent = "";
+    slotDetail.textContent = "";
 
-        // Find most frequent focus
-        let mostName = currentName;
-        let mostCount = currentCount;
-        for (const [name, count] of Object.entries(codeCounts)) {
-          if (count > mostCount) {
-            mostCount = count;
-            mostName = name;
-          }
-        }
+    const minSteps = 20;
+    const maxSteps = 30;
+    const totalSteps = minSteps + Math.floor(Math.random() * (maxSteps - minSteps + 1));
+    let delay = 35;
+    const delayIncrease = 6;
+    let step = 0;
+    let index = Math.floor(Math.random() * codes.length);
 
-        statsEl.innerHTML =
-          `<div>You have consulted The Oracle ${totalSpins} time${totalSpins === 1 ? "" : "s"}.</div>` +
-          `<div>You have landed on <strong>${currentName}</strong> ${currentCount} time${currentCount === 1 ? "" : "s"}.</div>` +
-          `<div>Your most frequent focus is <strong>${mostName}</strong>.</div>`;
-      }
+    function tick() {
+      index = (index + 1) % codes.length;
+      const current = codes[index];
+      slotName.textContent = current.name;
 
-      // If there is a last focus, show it on load
-      if (totalSpins > 0 && lastFocusName) {
-        const last = codes.find(c => c.name === lastFocusName);
-        if (last) {
-          applyFocus(last);
-          updateStatsBlock(last.name);
-          status.textContent = "Welcome back. This was your last focus.";
-        }
-      }
+      // small visual oscillation
+      slotName.style.transform = step % 2 === 0 ? "translateY(1px)" : "translateY(-1px)";
+      step++;
 
-      button.addEventListener("click", function () {
-        if (hasSpun) {
-          status.textContent = "The universe has spoken. Come back tomorrow.";
-          return;
-        }
-        if (spinning) return;
-
-        spinning = true;
+      if (step < totalSteps) {
+        delay += delayIncrease;
+        setTimeout(tick, delay);
+      } else {
+        slotName.style.transform = "translateY(0)";
+        const chosen = codes[index];
+        status.textContent = "";
+        showResult(chosen);
+        spinning = false;
+        hasSpun = true;
         button.disabled = true;
-        status.textContent = "Consulting the cosmos…";
-
-        slotMantra.textContent = "";
-        slotDetail.textContent = "";
-
-        const minSteps = 20;
-        const maxSteps = 30;
-        const totalSteps = minSteps + Math.floor(Math.random() * (maxSteps - minSteps + 1));
-        let delay = 35;
-        const delayIncrease = 6;
-        let step = 0;
-        let index = Math.floor(Math.random() * codes.length);
-
-        function tick() {
-          index = (index + 1) % codes.length;
-          const current = codes[index];
-          slotName.textContent = current.name;
-
-          slotName.style.transform = step % 2 === 0 ? "translateY(1px)" : "translateY(-1px)";
-          step++;
-
-          if (step < totalSteps) {
-            delay += delayIncrease;
-            setTimeout(tick, delay);
-          } else {
-            slotName.style.transform = "translateY(0)";
-            const chosen = codes[index];
-            status.textContent = "";
-            showResult(chosen);
-            spinning = false;
-            hasSpun = true;
-            button.disabled = true;
-            button.textContent = "The universe has spoken";
-          }
-        }
-
-        tick();
-      });
-
-      function showResult(chosen) {
-        // Update UI
-        applyFocus(chosen);
-
-        // Update stats in memory
-        totalSpins += 1;
-        codeCounts[chosen.name] = (codeCounts[chosen.name] || 0) + 1;
-
-        // Persist stats
-        localStorage.setItem("oracleTotalSpins", String(totalSpins));
-        localStorage.setItem("oracleCodeCounts", JSON.stringify(codeCounts));
-        localStorage.setItem("oracleLastFocusName", chosen.name);
-
-        // Render stats block
-        updateStatsBlock(chosen.name);
+        button.textContent = "The universe has spoken";
       }
-    })();
+    }
+
+    tick();
+  });
+
+  function showResult(chosen) {
+    slotName.textContent = chosen.name;
+    slotMantra.textContent = chosen.mantra;
+    slotDetail.textContent = chosen.text;
+  }
+
+})();
   </script>
+
 </body>
 </html>
